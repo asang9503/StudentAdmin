@@ -1,0 +1,32 @@
+POST http://localhost:8080/do/user/regist?perUsername=root&perPassword=123456&perType=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-03-12T044454.200.json
+
+###
+
+POST http://localhost:8080/do/user/regist?perUsername=root&perPassword=123456&perType=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-03-12T043944.500.json
+
+###
+
+POST http://localhost:8080/do/user/regist?perUsername=root&perPassword=root&perType=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-03-12T043828.400.json
+
+###
+
+POST http://localhost:8080/resources?perUsername=root&perPassword=root&perType=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-03-12T043757.404.json
+
+###
+
