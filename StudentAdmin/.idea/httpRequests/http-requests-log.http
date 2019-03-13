@@ -1,3 +1,81 @@
+POST http://localhost:8080/do/user/register?perUsername=root&perPassword=123456&perType=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-03-13T044610.200.json
+
+###
+
+POST http://localhost:8080/do/user/regist?perUsername=root&perPassword=123456&perType=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-03-13T044604.404.json
+
+###
+
+POST http://localhost:8080/do/user/regist?perUsername=root&perPassword=123456&perType=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-03-13T044301.200.json
+
+###
+
+POST http://localhost:8080/do/user/regist?perUsername=root&perPassword=123456&perType=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-03-13T044153.200.json
+
+###
+
+POST http://localhost:8080/do/user/regist?perUsername=root&perPassword=123456&perType=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-03-13T014332.200.json
+
+###
+
+POST http://localhost:8080/do/user/regist?perUsername=root&perPassword=123456&perType=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-03-13T014217.500.json
+
+###
+
+POST http://localhost:8080/do/user/regist?perUsername=root&perPassword=123456&perType=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-03-13T101959.200.json
+
+###
+
+POST http://localhost:8080/do/user/login?perUsername=root&perPassword=123456
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-03-13T101805.200.json
+
+###
+
+POST http://localhost:8080/do/user/login?perUsername=root&perPassword=123456
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-03-13T101532.500.json
+
+###
+
+POST http://localhost:8080/do/user/login?perUsername=root&perPassword=123456
+Accept: */*
+Cache-Control: no-cache
+
+###
+
 POST http://localhost:8080/do/user/regist?perUsername=root&perPassword=123456&perType=1
 Accept: */*
 Cache-Control: no-cache

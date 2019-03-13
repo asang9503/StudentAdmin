@@ -17,6 +17,17 @@
     from school_per
     where per_id = #{perId,jdbcType=INTEGER}
   </select>
+
+  <select id="selectByUsernameAndPassword" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from school_per
+    where per_username = #{perUsername} and per_password = #{perPassword}
+  </select>
+  <select id="selectByUsername" resultType="Integer">
+    select per_id
+    from school_per
+    where per_username = #{perUsername}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from school_per
     where per_id = #{perId,jdbcType=INTEGER}
@@ -25,7 +36,7 @@
     insert into school_per (per_id, per_username, per_password, 
       per_type, updatetime)
     values (#{perId,jdbcType=INTEGER}, #{perUsername,jdbcType=VARCHAR}, #{perPassword,jdbcType=INTEGER}, 
-      #{perType,jdbcType=CHAR}, #{updatetime,jdbcType=VARCHAR})
+      #{perType,jdbcType=CHAR}, now())
   </insert>
   <insert id="insertSelective" parameterType="com.yyx.studentad.pojo.SchoolPer" >
     insert into school_per

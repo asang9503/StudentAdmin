@@ -1,6 +1,7 @@
 package com.yyx.studentad.service;
 
 
+import com.yyx.studentad.resultbean.ResultBean;
 import com.yyx.studentad.pojo.SchoolPer;
 
 /**
@@ -10,5 +11,7 @@ import com.yyx.studentad.pojo.SchoolPer;
 
 public interface SchoolPerService {
 
-    boolean RegistIsSuccess(SchoolPer per);
+    ResultBean registerIsSuccess(SchoolPer per);
+
+    ResultBean login(SchoolPer per);
 }
