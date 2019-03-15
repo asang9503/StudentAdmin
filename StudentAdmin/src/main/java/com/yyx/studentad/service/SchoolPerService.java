@@ -14,4 +14,8 @@ public interface SchoolPerService {
     ResultBean registerIsSuccess(SchoolPer per);
 
     ResultBean login(SchoolPer per);
+
+    ResultBean isLogin(String token);
+
+    ResultBean exitLogin(String token);
 }

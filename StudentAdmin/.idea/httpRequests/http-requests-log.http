@@ -1,3 +1,97 @@
+POST http://localhost:8080/do/user/isLogin?token=""
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-03-15T034002.200.json
+
+###
+
+POST http://localhost:8080/do/user/isLogin?token=05c08f56c3409ec1c986a555ad06efeeroot
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-03-15T033939.200.json
+
+###
+
+POST http://localhost:8080/do/user/login?perUsername=root&perPassword=123456
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-03-15T033906.200.json
+
+###
+
+POST http://localhost:8080/do/user/login?perUsername=root&perPassword=123456&token=05c08f56c3409ec1c986a555ad06efee
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+POST http://localhost:8080/do/user/login?perUsername=root&perPassword=123456&token=05c08f56c3409ec1c986a555ad06efee
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-03-15T011507.200.json
+
+###
+
+POST http://localhost:8080/do/user/login?perUsername=root&perPassword=123456&token=05c08f56c3409ec1c986a555ad06efeeroo
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-03-15T011455.200.json
+
+###
+
+POST http://localhost:8080/do/user/login?perUsername=root&perPassword=123456&token=05c08f56c3409ec1c986a555ad06efeeroo
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-03-15T113203.200.json
+
+###
+
+POST http://localhost:8080/do/user/login?perUsername=root&perPassword=123456&token=05c08f56c3409ec1c986a555ad06efeeroot
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-03-15T113149.200.json
+
+###
+
+POST http://localhost:8080/do/user/login?perUsername=root&perPassword=123456&token=05c08f56c3409ec1c986a555ad06efeeroot
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-03-15T110718.200.json
+
+###
+
+POST http://localhost:8080/do/user/login?perUsername=root&perPassword=123456&token=05c08f56c3409ec1c986a555ad06efeeroot
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-03-15T110712.200.json
+
+###
+
+POST http://localhost:8080/do/user/login?perUsername=root&perPassword=123456&token=05c08f56c3409ec1c986a555ad06efeeroot
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-03-15T101412.500.json
+
+###
+
+POST http://localhost:8080/do/user/login?perUsername=root&perPassword=123456&perType=1&token=05c08f56c3409ec1c986a555ad06efeeroot
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-03-15T101347.500.json
+
+###
+
 POST http://localhost:8080/do/user/register?perUsername=root&perPassword=123456&perType=1
 Accept: */*
 Cache-Control: no-cache

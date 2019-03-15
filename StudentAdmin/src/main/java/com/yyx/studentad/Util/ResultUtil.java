@@ -2,7 +2,6 @@ package com.yyx.studentad.Util;
 
 import com.yyx.studentad.constant.ConstantForAllPage;
 import com.yyx.studentad.resultbean.ResultBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,13 +11,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class ResultUtil {
 
-    @Autowired
-    private ConstantForAllPage constant;
 
     public ResultBean RightReturn(String msg) {
-        return new ResultBean(msg, constant.SUCCESS,null);
+        return new ResultBean(msg, ConstantForAllPage.SUCCESS,null);
     }
     public ResultBean ErrorReturn(String msg) {
-        return new ResultBean(msg,constant.ERROR,null);
+        return new ResultBean(msg,ConstantForAllPage.ERROR,null);
     }
 }

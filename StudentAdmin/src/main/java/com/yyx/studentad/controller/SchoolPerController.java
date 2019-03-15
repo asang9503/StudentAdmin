@@ -6,6 +6,7 @@ import com.yyx.studentad.service.SchoolPerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -27,5 +28,15 @@ public class SchoolPerController {
     @PostMapping("/login")
     public ResultBean login(SchoolPer per) {
         return perService.login(per);
+    }
+
+    @PostMapping("/isLogin")
+    public ResultBean isLogin(String token) {
+        return perService.isLogin(token);
+    }
+
+    @PostMapping("/exitLogin")
+    public ResultBean exitLogin(String token) {
+        return perService.exitLogin(token);
     }
 }
