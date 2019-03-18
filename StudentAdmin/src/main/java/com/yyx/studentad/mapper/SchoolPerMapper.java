@@ -20,4 +20,6 @@ public interface SchoolPerMapper {
     SchoolPer selectByUsernameAndPassword (SchoolPer record);
 
     int selectByUsername(String username);
+
+    int updatePasswordByPerUsername(SchoolPer per);
 }

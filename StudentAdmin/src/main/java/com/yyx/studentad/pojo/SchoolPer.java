@@ -1,10 +1,15 @@
 package com.yyx.studentad.pojo;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 public class SchoolPer {
     private Integer perId;
 
+    @NotEmpty
     private String perUsername;
 
+    @NotNull
     private Integer perPassword;
 
     private String perType;
@@ -49,5 +54,16 @@ public class SchoolPer {
 
     public void setUpdatetime(String updatetime) {
         this.updatetime = updatetime == null ? null : updatetime.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "SchoolPer{" +
+                "perId=" + perId +
+                ", perUsername='" + perUsername + '\'' +
+                ", perPassword=" + perPassword +
+                ", perType='" + perType + '\'' +
+                ", updatetime='" + updatetime + '\'' +
+                '}';
     }
 }

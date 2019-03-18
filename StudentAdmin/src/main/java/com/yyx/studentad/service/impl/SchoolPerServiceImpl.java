@@ -35,10 +35,21 @@ public class SchoolPerServiceImpl implements SchoolPerService {
     public ResultBean registerIsSuccess(SchoolPer per) {
         if (per == null) {
             resultBean = resultUtil.ErrorReturn("输入不能为空");
-        } else if (perMapper.selectByUsername(per.getPerUsername()) > 0) {
-            resultBean = resultUtil.ErrorReturn("该账号已存在");
         } else {
-            resultBean = resultUtil.RightReturn("注册成功");
+            resultBean = perMapper.insertSelective(per) > 0 ? resultUtil.RightReturn("注册成功") :
+            resultUtil.ErrorReturn("注册失败");
+        }
+        return resultBean;
+    }
+
+    @Override
+    public ResultBean perUsernameExists(String perUsername) {
+        if (perUsername != null && "" != perUsername) {
+            int perID = perMapper.selectByUsername(perUsername);
+            resultBean = perID > 0 ? resultUtil.ErrorReturn("该账号已存在！") :
+                    resultUtil.ErrorReturn("该账号可以使用！");
+        } else {
+            resultBean = resultUtil.ErrorReturn("输入不能为空！");
         }
         return resultBean;
     }
@@ -50,10 +61,14 @@ public class SchoolPerServiceImpl implements SchoolPerService {
             resultBean = resultUtil.ErrorReturn("账号或者密码错误！");
         } else {
             per = perMapper.selectByUsernameAndPassword(per);
-            String key = ConstantForAllPage.TOKEN + per.getPerUsername();
-            String value1 = JSONObject.toJSONString(per);
-            jedisUtil.saveStringValue(key, value1);
-            resultBean = new ResultBean("登陆成功！", ConstantForAllPage.SUCCESS, key);
+            if (null != per) {
+                String key = ConstantForAllPage.TOKEN + per.getPerUsername();
+                String value1 = JSONObject.toJSONString(per);
+                jedisUtil.saveStringValue(key, value1);
+                resultBean = new ResultBean("登陆成功！", ConstantForAllPage.SUCCESS, key);
+            } else {
+                resultBean = resultUtil.ErrorReturn("登录失败！");
+            }
         }
         return resultBean;
     }
@@ -62,22 +77,32 @@ public class SchoolPerServiceImpl implements SchoolPerService {
     public ResultBean isLogin(String token) {
         if (null != token && "" != token) {
             String value = jedisUtil.getStringValue(token);
-            if (null == value || "" == value) {
-                return resultUtil.ErrorReturn("请登录");
-            } else {
-                return resultUtil.RightReturn("已登录");
-            }
+            resultBean = (null == value || "" == value) ? resultUtil.ErrorReturn("请登录") :
+                    resultUtil.RightReturn("已登录");
         } else {
-            return resultUtil.ErrorReturn("请登录");
+            resultBean =  resultUtil.ErrorReturn("请登录");
         }
+        return resultBean;
     }
 
     @Override
     public ResultBean exitLogin(String token) {
         if (null != token && "" != token) {
-            return jedisUtil.removeString(token) ? resultUtil.RightReturn("登出成功") : resultUtil.ErrorReturn("登出失败!稍后再试!");
+            resultBean = jedisUtil.removeString(token) ? resultUtil.RightReturn("登出成功") : resultUtil.ErrorReturn("登出失败!稍后再试!");
         } else {
-            return resultUtil.ErrorReturn("登出失败!稍后再试!");
+            resultBean = resultUtil.ErrorReturn("登出失败!稍后再试!");
         }
+        return resultBean;
+    }
+
+    @Override
+    public ResultBean updatePassword(SchoolPer per) {
+        if (null == per) {
+            resultBean = resultUtil.ErrorReturn("输入不能为空！");
+        } else {
+            resultBean = perMapper.updatePasswordByPerUsername(per) > 0 ? resultUtil.RightReturn("修改成功") :
+                    resultUtil.ErrorReturn("修改失败！");
+        }
+        return resultBean;
     }
 }
