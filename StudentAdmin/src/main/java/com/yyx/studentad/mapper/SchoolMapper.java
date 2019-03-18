@@ -1,7 +1,9 @@
 package com.yyx.studentad.mapper;
 
 import com.yyx.studentad.pojo.School;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface SchoolMapper {
     int deleteByPrimaryKey(Integer schoolId);
 
