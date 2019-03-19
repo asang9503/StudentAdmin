@@ -1,14 +1,23 @@
 package com.yyx.studentad.pojo;
 
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 public class School {
     private Integer schoolId;
 
+    @NotEmpty
     private String schoolNumber;
 
+    @NotEmpty
     private String schoolName;
 
+    @NotEmpty
     private String schoolAddress;
 
+    @NotEmpty
+    @Size(max = 11, min = 11)
     private String schoolTell;
 
     public Integer getSchoolId() {
