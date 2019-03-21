@@ -1,50 +1,52 @@
 package com.yyx.studentad.controller;
 
+import com.yyx.studentad.constant.ConstantForAllPage;
 import org.springframework.stereotype.Component;
-
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
-import java.io.IOException;
-import java.util.concurrent.CopyOnWriteArraySet;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 import java.util.logging.Logger;
 
 /**
  * 阿桑
  * 2019/3/19
  */
-@ServerEndpoint("/msg")
+@ServerEndpoint("/msg/{username}")
 @Component
 public class WebSocketController {
     static Logger logger = Logger.getLogger("webSocket");
     private static int onlineCount = 0;
-    private static CopyOnWriteArraySet<WebSocketController> webSocketSet = new CopyOnWriteArraySet<>();
+    private static Map<String, WebSocketController> webSocketMap = new ConcurrentHashMap<>();
     private Session session;
-    private String sid = "";
+    private String username = "Admin";
 
     @OnOpen
-    public void onOpen(Session session, @PathParam("sid") String sid) {
+    public void onOpen(Session session, @PathParam("username") String username) {
         this.session = session;
-        webSocketSet.add(this);
+        webSocketMap.put(username, this);
+        session.setMaxTextMessageBufferSize(ConstantForAllPage.MAXWORD);
         addOnlineCount();
-        logger.info("有新成员加入:" + sid + ",当前在线人数为" + getOnlineCount());
-        this.sid = sid;
-        sendMsg("连接成功");
+        logger.info("有新成员加入:" + username + ",当前在线人数为" + getOnlineCount());
+        this.username = username;
+            sendMsg("欢迎" + username + "进入聊天室");
     }
 
     @OnClose
     public void onClose() {
-        webSocketSet.remove(this);
+        webSocketMap.remove(this);
         subOnlineCount();
-        logger.info("有人退出聊天！当前在线人数为" + getOnlineCount());
+        String msg = "退出聊天！当前在线人数为" + getOnlineCount();
+        sendMsg(msg);
+        logger.info(msg);
     }
 
     @OnMessage
     public void onMessage(String msg, Session session) {
-        logger.info("收到来自窗口" + sid + "的消息:" + msg);
-        for (WebSocketController webSocketController : webSocketSet) {
-            webSocketController.sendMsg(msg);
-        }
+        logger.info("收到来自用户" + username + "的消息:" + msg);
+        sendMsg(msg);
     }
 
     @OnError
@@ -53,13 +55,16 @@ public class WebSocketController {
         error.printStackTrace();
     }
 
-    public void sendMsg(String msg) {
-        try {
-            this.session.getBasicRemote().sendText(msg);
-        } catch (IOException e) {
-            logger.warning("发生异常:" + e.getMessage());
-            e.printStackTrace();
-        }
+    public void sendMsg(String msg){
+        webSocketMap.forEach((s,w)-> w.session.getAsyncRemote().sendText(msg));
+    }
+
+    public void sendMsg(String msg, String username){
+        webSocketMap.forEach((s,w)-> {
+            if (s.equals(username)) {
+                w.session.getAsyncRemote().sendText(msg);
+            }
+        });
     }
 
     public static synchronized int getOnlineCount() {
